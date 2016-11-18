@@ -108,6 +108,17 @@ public class SubstringDivisibility {
         this.reverseArray(a, k);
     }
     
+    private int numDivisible() {
+        // generate the array of digits to permute
+        int n = 9;
+        int[] a = new int[n];
+        for (int i = n; i >= 1; i--) {
+            a[n - i] = i;
+        }
+        
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
