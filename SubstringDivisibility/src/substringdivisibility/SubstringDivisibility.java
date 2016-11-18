@@ -23,6 +23,7 @@ import java.util.Stack;
  * @author Michael <GrubenM@GMail.com>
  */
 public class SubstringDivisibility {
+    boolean exit = false;
     
     private boolean isDivisible(int[] a) {
         int i = 1;
@@ -83,14 +84,17 @@ public class SubstringDivisibility {
         // Find the largest index k
         int k;
         int largest = 0;
-        boolean exit = true;
+        boolean subexit = true;
         for (k = largest; k < a.length - 1; k++) {
             if (a[k] > a[k + 1]) {
                 largest = k;
-                exit = false;  // the permutation is not the last permutation
+                subexit = false;  // the permutation is not the last permutation
             }
         }
-        if (exit) return;
+        if (subexit){
+            exit = true;
+            return;
+        }
         k = largest;
         
         // Find the largest index l
@@ -110,22 +114,26 @@ public class SubstringDivisibility {
     
     private int numDivisible() {
         // generate the array of digits to permute
-        int n = 9;
+        int n = 10;
         int[] a = new int[n];
-        for (int i = n; i >= 1; i--) {
-            a[n - i] = i;
+        for (int i = n - 1; i >= 0; i--) {
+            a[(n-1) - i] = i;
         }
         
-        
+        int c = 0;
+        for(int i = 0; !exit; i++) {
+            if (this.isDivisible(a)) c++;
+            this.permute(a);
+        }
+        return c;
     }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[] a = new int[] {1,4,0,6,3,5,7,2,8,9};
         SubstringDivisibility s = new SubstringDivisibility();
-        System.out.println(s.isDivisible(a));
+        System.out.println(s.numDivisible());
     }
     
 }
