@@ -23,7 +23,24 @@ import java.util.Stack;
  * @author Michael <GrubenM@GMail.com>
  */
 public class SubstringDivisibility {
-
+    
+    private boolean isDivisible(int[] a) {
+        int i = 1;
+        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 2 != 0) return false;
+        i++;
+        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 3 != 0) return false;
+        i++;
+        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 5 != 0) return false;
+        i++;
+        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 7 != 0) return false;
+        i++;
+        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 11 != 0) return false;
+        i++;
+        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 13 != 0) return false;
+        i++;
+        return (a[i]*100 + a[i+1]*10 + a[i+2]) % 17 == 0;
+    }
+    
     /**
      * Reverse the sequence from a[k+1] up to and including the final element
      * @param a
@@ -95,7 +112,9 @@ public class SubstringDivisibility {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        int[] a = new int[] {1,4,0,6,3,5,7,2,8,9};
+        SubstringDivisibility s = new SubstringDivisibility();
+        System.out.println(s.isDivisible(a));
     }
     
 }
