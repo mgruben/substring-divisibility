@@ -16,12 +16,81 @@
  */
 package substringdivisibility;
 
+import java.util.Stack;
+
 /**
  *
  * @author Michael <GrubenM@GMail.com>
  */
 public class SubstringDivisibility {
 
+    /**
+     * Reverse the sequence from a[k+1] up to and including the final element
+     * @param a
+     * @param k 
+     */
+    private void reverseArray(int[] a, int k) {
+        Stack<Integer> s = new Stack<>();
+        for (int tmp = k; tmp + 1 < a.length; tmp++) s.push(a[tmp+1]);
+        for (int tmp = k; tmp + 1 < a.length; tmp++) a[tmp+1] = s.pop();
+    }
+    
+    /**
+     * Swap the value of a[k] with that of a[l]
+     * @param a
+     * @param k
+     * @param l 
+     */
+    private void swap(int[] a, int k, int l) {
+        int tmp = a[k];
+        a[k] = a[l];
+        a[l] = tmp;
+    }
+    
+    /**
+     * Permute the array of digits in-place to the next-largest permutation.
+     * No change is made if the array is already the smallest permutation.
+     * @param a 
+     */
+    private void permute(int[] a) {
+        /**
+         * from https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
+         * 
+         * (1) Find the largest index k such that a[k] > a[k + 1].
+         *    If no such index exists, the permutation is the last permutation.
+         * (2) Find the largest index l greater than k such that a[k] > a[l].
+         * (3) Swap the value of a[k] with that of a[l].
+         * (4) Reverse the sequence from a[k + 1] up to and including the final element a[n].
+         */
+        
+        // Find the largest index k
+        int k;
+        int largest = 0;
+        boolean exit = true;
+        for (k = largest; k < a.length - 1; k++) {
+            if (a[k] > a[k + 1]) {
+                largest = k;
+                exit = false;  // the permutation is not the last permutation
+            }
+        }
+        if (exit) return;
+        k = largest;
+        
+        // Find the largest index l
+        int l;
+        largest = k + 1;
+        for (l = largest; l < a.length; l++) {
+            if (a[k] > a[l]) {
+                largest = l;
+            }
+        }
+        l = largest;
+        
+        // Swap and reverse
+        this.swap(a, k, l);
+        this.reverseArray(a, k);
+    }
+    
     /**
      * @param args the command line arguments
      */
