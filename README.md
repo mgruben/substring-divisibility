@@ -1,5 +1,5 @@
 # substring-divisibility 
-Finds the sum of all 0-9 pandigital numbers which are especially divisible
+Find the sum of all 0-9 pandigital numbers which are especially divisible.
 
 A number is 0-n pandigital if that number contains the digits 0 through n exactly once, in any order.  
 * Ex. `3217896504` is 0-9 pandigital, since it contains `0, 1, 2, 3, 4, 5, 6, 7, 8, and 9`.
