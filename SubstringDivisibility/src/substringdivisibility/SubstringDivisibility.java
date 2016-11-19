@@ -43,39 +43,11 @@ public class SubstringDivisibility {
      */
     private boolean isDivisible(int[] a) {
         int i = 1;
-        int tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        if (tmp % 2 != 0) return false;
-        
-        i++;
-        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        if (tmp % 3 != 0) return false;
-        
-        i++;
-        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        if (tmp % 5 != 0) return false;
-        
-        i++;
-        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        if (tmp % 7 != 0) return false;
-        
-        i++;
-        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        if (tmp % 11 != 0) return false;
-        
-        i++;
-        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        if (tmp % 13 != 0) return false;
-        
-        i++;
-        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
-        System.out.println(tmp);
-        return tmp % 17 == 0;
+        for (int d: new int[] {2, 3, 5, 7, 11, 13, 17}) {
+            if ((a[i]*100 + a[i+1]*10 + a[i+2]) % d != 0) return false;
+            i++;
+        }
+        return true;
     }
     
     /**
@@ -167,31 +139,24 @@ public class SubstringDivisibility {
      * (see isDivisible for that definition)
      * @return 
      */
-    private int numDivisible() {
+    private long numDivisible() {
         int [] a = getStarter();
         
-        int c = 0;
-        String cur = atos(a);
+        long c = 0;
         while(!exit) {
-            if (this.isDivisible(a)) c++;
+            if (this.isDivisible(a)) c += atol(a);
             this.permute(a);
-            String tmp = atos(a);
-            if (tmp.compareTo(cur) > 0) {
-                System.out.println("Next permutation greater!");
-                System.out.println("cur: " + cur);
-                System.out.println("tmp: " + tmp);
-            }
-            cur = tmp;
         }
         return c;
     }
     
-    private String atos(int[] a) {
-        StringBuilder sb = new StringBuilder();
+    private long atol(int[] a) {
+        long l = 0;
         for (int i: a) {
-            sb.append(i);
+            l *= 10;
+            l += i;
         }
-        return sb.toString();
+        return l;
     }
     
     /**
