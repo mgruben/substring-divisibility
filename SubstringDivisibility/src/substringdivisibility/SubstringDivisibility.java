@@ -51,7 +51,7 @@ public class SubstringDivisibility {
         j = 0;
         n = 10;
         
-        // build the 0-9 pandigital array and the permutation-generation array.
+        // build the 0-9 pandigital array and the Heap's counter array.
         for (int i = 0; i < n; i++) {
             a[i] = i;
             c[i] = 0;
