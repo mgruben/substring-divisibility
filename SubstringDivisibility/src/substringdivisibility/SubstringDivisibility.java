@@ -23,7 +23,21 @@ import java.util.Stack;
  * @author Michael <GrubenM@GMail.com>
  */
 public class SubstringDivisibility {
-    boolean exit = false;
+    boolean exit;
+    int[] a;
+    int[] c;
+    
+    public SubstringDivisibility() {
+        exit = false;
+        
+        int n = 10;
+        
+        // build the 0-9 pandigital array and the permutation-generation array.
+        for (int i = 0; i < n; i++) {
+            a[i] = i;
+            c[i] = 0;
+        }
+    }
     
     /**
      * Returns true ONLY IF:
@@ -49,18 +63,7 @@ public class SubstringDivisibility {
         }
         return true;
     }
-    
-    /**
-     * Reverse the sequence from a[k+1] up to and including the final element
-     * @param a
-     * @param k 
-     */
-    private void reverseArray(int[] a, int k) {
-        Stack<Integer> s = new Stack<>();
-        for (int tmp = k; tmp + 1 < a.length; tmp++) s.push(a[tmp+1]);
-        for (int tmp = k; tmp + 1 < a.length; tmp++) a[tmp+1] = s.pop();
-    }
-    
+        
     /**
      * Swap the value of a[k] with that of a[l]
      * @param a
@@ -149,7 +152,8 @@ public class SubstringDivisibility {
     }
     
     /**
-     * Prints the given array
+     * Prints the given array.
+     * Useful for debugging.
      * @param a 
      */
     private void printArray(int[] a) {
@@ -162,7 +166,8 @@ public class SubstringDivisibility {
     
     /**
      * Prints the sum of the 0-9 pandigital numbers which are especially
-     * divisible (see isDivisible for the definition)
+     * divisible (see isDivisible for the definition).
+     * @param args
      */
     public static void main(String[] args) {
         SubstringDivisibility s = new SubstringDivisibility();
