@@ -19,16 +19,33 @@ package substringdivisibility;
 import java.util.Stack;
 
 /**
- *
+ * Outputs the sum of the 0-9 pandigital numbers which are divisible
+ * as defined in the docstring for isDivisible.
+ * 
+ * See also https://projecteuler.net/problem=43
+ * 
  * @author Michael <GrubenM@GMail.com>
  */
 public class SubstringDivisibility {
+    
+    // Should we continue permuting the array?
     boolean exit;
+    
+    // The array to permute
     int[] a;
+    
+    // Heap's counter array
     int[] c;
+    
+    // Heap's counter
     int j;
+    
+    // The length of the array to permute
     int n;
     
+    /**
+     * Initializes the above instance variables
+     */
     public SubstringDivisibility() {
         exit = false;
         a = new int[10];
@@ -135,6 +152,11 @@ public class SubstringDivisibility {
         System.out.println("}");
     }
     
+    /**
+     * Sums the 0-9 pandigital numbers which are especially divisible
+     * (see isDivisible for the definition).
+     * @return 
+     */
     public long getSum() {
         long c = 0;
         while (!exit) {
@@ -153,5 +175,5 @@ public class SubstringDivisibility {
         SubstringDivisibility s = new SubstringDivisibility();
         System.out.println(s.getSum());
     }
-    
+  
 }
