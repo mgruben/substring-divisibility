@@ -97,7 +97,7 @@ public class SubstringDivisibility {
     
     /**
      * Permute the array of digits in-place to the next permutation.
-     * No change is made if the array is already the smallest permutation.
+     * No change is made if the array is at the last permutation.
      * 
      * No guarantee is made about the lexicographic ordering of the permutations
      * 
