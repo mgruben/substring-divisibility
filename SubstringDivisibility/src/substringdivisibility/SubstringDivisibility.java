@@ -100,7 +100,7 @@ public class SubstringDivisibility {
             }
         }
         if (subexit){
-            exit = true;
+            exit = true;  // we're at the last permutation; stop iterating
             return;
         }
         k = largest;
@@ -121,7 +121,7 @@ public class SubstringDivisibility {
     }
     
     /**
-     * Returns the array {9, 8, 7, 6, 5, 4, 3, 2, 1}
+     * Returns the array {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
      * @return 
      */
     private int[] getStarter() {
@@ -135,11 +135,11 @@ public class SubstringDivisibility {
     }
     
     /**
-     * Returns the number of 0-9 pandigital numbers which are divisible.
+     * Returns the sum of the 0-9 pandigital numbers which are divisible.
      * (see isDivisible for that definition)
      * @return 
      */
-    private long numDivisible() {
+    private long sumDivisible() {
         int [] a = getStarter();
         
         long c = 0;
@@ -150,6 +150,11 @@ public class SubstringDivisibility {
         return c;
     }
     
+    /**
+     * Returns the long representation of the given integer array.
+     * @param a
+     * @return 
+     */
     private long atol(int[] a) {
         long l = 0;
         for (int i: a) {
@@ -176,7 +181,7 @@ public class SubstringDivisibility {
      */
     public static void main(String[] args) {
         SubstringDivisibility s = new SubstringDivisibility();
-        System.out.println(s.numDivisible());
+        System.out.println(s.sumDivisible());
     }
     
 }
