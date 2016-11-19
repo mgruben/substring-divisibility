@@ -25,21 +25,57 @@ import java.util.Stack;
 public class SubstringDivisibility {
     boolean exit = false;
     
+    /**
+     * Returns true ONLY IF:
+     * for a given number, passed as an array, whose indexes are 0123456789,
+     * 123 is divisible by 2
+     * 234 is divisible by 3
+     * 345 is divisible by 5
+     * 456 is divisible by 7
+     * 567 is divisible by 11
+     * 678 is divisible by 13
+     * 789 is divisible by 17.
+     * 
+     * If any of the above are not true, return false.
+     * 
+     * @param a
+     * @return 
+     */
     private boolean isDivisible(int[] a) {
         int i = 1;
-        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 2 != 0) return false;
+        int tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        if (tmp % 2 != 0) return false;
+        
         i++;
-        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 3 != 0) return false;
+        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        if (tmp % 3 != 0) return false;
+        
         i++;
-        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 5 != 0) return false;
+        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        if (tmp % 5 != 0) return false;
+        
         i++;
-        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 7 != 0) return false;
+        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        if (tmp % 7 != 0) return false;
+        
         i++;
-        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 11 != 0) return false;
+        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        if (tmp % 11 != 0) return false;
+        
         i++;
-        if ((a[i]*100 + a[i+1]*10 + a[i+2]) % 13 != 0) return false;
+        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        if (tmp % 13 != 0) return false;
+        
         i++;
-        return (a[i]*100 + a[i+1]*10 + a[i+2]) % 17 == 0;
+        tmp = a[i]*100 + a[i+1]*10 + a[i+2];
+        System.out.println(tmp);
+        return tmp % 17 == 0;
     }
     
     /**
@@ -112,20 +148,47 @@ public class SubstringDivisibility {
         this.reverseArray(a, k);
     }
     
-    private int numDivisible() {
+    /**
+     * Returns the array {9, 8, 7, 6, 5, 4, 3, 2, 1}
+     * @return 
+     */
+    private int[] getStarter() {
         // generate the array of digits to permute
         int n = 10;
         int[] a = new int[n];
         for (int i = n - 1; i >= 0; i--) {
             a[(n-1) - i] = i;
         }
+        return a;
+    }
+    
+    /**
+     * Returns the number of 0-9 pandigital numbers which are divisible.
+     * (see isDivisible for that definition)
+     * @return 
+     */
+    private int numDivisible() {
+        int [] a = getStarter();
         
         int c = 0;
-        for(int i = 0; !exit; i++) {
+        while(!exit) {
             if (this.isDivisible(a)) c++;
             this.permute(a);
+            this.printArray(a);
         }
         return c;
+    }
+    
+    /**
+     * Prints the given array
+     * @param a 
+     */
+    private void printArray(int[] a) {
+        System.out.print("{");
+        String s = "";
+        for (int i: a) s += i + ",";
+        System.out.print(s.substring(0, s.length() - 1));
+        System.out.println("}");
     }
     
     /**
@@ -133,7 +196,7 @@ public class SubstringDivisibility {
      */
     public static void main(String[] args) {
         SubstringDivisibility s = new SubstringDivisibility();
-        System.out.println(s.numDivisible());
+        System.out.println(s.isDivisible(new int[] {4,1,0,6,3,5,7,2,8,9}));
     }
     
 }
