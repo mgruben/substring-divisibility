@@ -135,22 +135,6 @@ public class SubstringDivisibility {
     }
     
     /**
-     * Returns the sum of the 0-9 pandigital numbers which are divisible.
-     * (see isDivisible for that definition)
-     * @return 
-     */
-    private long sumDivisible() {
-        int [] a = getStarter();
-        
-        long c = 0;
-        while(!exit) {
-            if (this.isDivisible(a)) c += atol(a);
-            this.permute(a);
-        }
-        return c;
-    }
-    
-    /**
      * Returns the long representation of the given integer array.
      * @param a
      * @return 
@@ -177,11 +161,18 @@ public class SubstringDivisibility {
     }
     
     /**
-     * @param args the command line arguments
+     * Prints the sum of the 0-9 pandigital numbers which are especially
+     * divisible (see isDivisible for the definition)
      */
     public static void main(String[] args) {
         SubstringDivisibility s = new SubstringDivisibility();
-        System.out.println(s.sumDivisible());
+        int[] a = s.getStarter();
+        long c = 0;
+        while (!s.exit) {
+            if (s.isDivisible(a)) c += s.atol(a);
+            s.permute(a);
+        }
+        System.out.println(c);
     }
     
 }
