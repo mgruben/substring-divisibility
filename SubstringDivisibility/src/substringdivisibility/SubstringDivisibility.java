@@ -69,7 +69,7 @@ public class SubstringDivisibility {
      * 678 is divisible by 13
      * 789 is divisible by 17.
      * 
-     * If any of the above are not true, return false.
+     * If any of the above are false, return false.
      * 
      * @param a
      * @return 
