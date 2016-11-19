@@ -171,12 +171,27 @@ public class SubstringDivisibility {
         int [] a = getStarter();
         
         int c = 0;
+        String cur = atos(a);
         while(!exit) {
             if (this.isDivisible(a)) c++;
             this.permute(a);
-            this.printArray(a);
+            String tmp = atos(a);
+            if (tmp.compareTo(cur) > 0) {
+                System.out.println("Next permutation greater!");
+                System.out.println("cur: " + cur);
+                System.out.println("tmp: " + tmp);
+            }
+            cur = tmp;
         }
         return c;
+    }
+    
+    private String atos(int[] a) {
+        StringBuilder sb = new StringBuilder();
+        for (int i: a) {
+            sb.append(i);
+        }
+        return sb.toString();
     }
     
     /**
@@ -196,7 +211,7 @@ public class SubstringDivisibility {
      */
     public static void main(String[] args) {
         SubstringDivisibility s = new SubstringDivisibility();
-        System.out.println(s.isDivisible(new int[] {4,1,0,6,3,5,7,2,8,9}));
+        System.out.println(s.numDivisible());
     }
     
 }
