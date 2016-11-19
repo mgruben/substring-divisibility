@@ -16,8 +16,6 @@
  */
 package substringdivisibility;
 
-import java.util.Stack;
-
 /**
  * Outputs the sum of the 0-9 pandigital numbers which are divisible
  * as defined in the docstring for isDivisible.
